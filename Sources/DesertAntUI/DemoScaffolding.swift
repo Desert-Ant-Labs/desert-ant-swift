@@ -69,14 +69,14 @@ extension DS {
     /// start" moment a demo opens into.
     public struct EmptyHint<Action: View>: View {
         let title: String
-        let body: String
+        let message: String
         let action: () -> Action
 
         public init(title: String,
-                    body: String,
+                    message: String,
                     @ViewBuilder action: @escaping () -> Action) {
             self.title = title
-            self.body = body
+            self.message = message
             self.action = action
         }
 
@@ -87,7 +87,7 @@ extension DS {
                         .font(DS.Font.display(26))
                         .foregroundStyle(DS.Color.textPrimary)
                         .multilineTextAlignment(.center)
-                    Text(self.body)
+                    Text(message)
                         .font(DS.Font.sans(DS.Font.textSm))
                         .multilineTextAlignment(.center)
                         .foregroundStyle(DS.Color.textSecondary)
