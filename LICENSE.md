@@ -2,12 +2,13 @@
 
 Version 1.0 · 2026-06-15
 
-Copyright © 2026 Desert Ant Labs (`desertant.ai`).
+Copyright © 2026 Studio Company B.V., trading as Desert Ant Labs (`desertant.ai`).
 
 This license governs Your use of the software, model weights, datasets, documentation, and associated assets in this repository (collectively, the **"Licensed Materials"**).
 
 ## Definitions
 
+- **"Desert Ant Labs"** (and "We", "Us", "Our") — Studio Company B.V., a private limited liability company (*besloten vennootschap*) incorporated in the Netherlands, trading as Desert Ant Labs.
 - **"Model"** — a set of trained weights published by Desert Ant Labs under a single HuggingFace repository (for example, `huggingface.co/desert-ant-labs/eye`). Each Model is a distinct work under this license.
 - **"Monthly Active User"** or **"MAU"** — a unique end user who interacts with a feature powered by a Model during a calendar month. Use by Your own employees and contractors does not count.
 - **"You"** — the individual or legal entity exercising rights under this license.
@@ -80,4 +81,4 @@ This license is governed by the laws of **the Netherlands**, without regard to i
 
 Commercial licensing inquiries: <licensing@desertant.ai>.
 
-© 2026 Desert Ant Labs.
+© 2026 Studio Company B.V., trading as Desert Ant Labs.
