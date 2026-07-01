@@ -1,5 +1,6 @@
 import CryptoKit
 import Foundation
+import Hub
 import ZIPFoundation
 
 /// Downloads and caches model weights from HuggingFace, content-addressed by
@@ -14,12 +15,16 @@ import ZIPFoundation
 /// picked up by every install on next download without a Swift package
 /// release; cached copies remain valid because the cache is keyed by oid.
 ///
-/// **Two file modes.**
-/// - `file(_:)` — a single file (e.g. `model.mlpackage.zip`, `vocab.json`).
-///   Returned as a file URL in Application Support.
+/// **Fetch modes.**
+/// - `file(_:)` — a single file (e.g. `vocab.json`). Returned as a file URL in
+///   Application Support, content-addressed by HF `lfs.oid`.
 /// - `archive(_:unpackedAs:approxBytes:)` — a zip on HF that contains a single
-///   bundle (e.g. an `.mlpackage`). The bundle is extracted into the cache
-///   atomically and the unpacked URL is returned.
+///   bundle. The bundle is extracted into the cache atomically and the unpacked
+///   URL is returned. (Legacy; prefer `snapshot` for unzipped bundles.)
+/// - `snapshot(matching:)` — downloads an *unzipped* directory bundle (e.g. a
+///   `.mlmodelc/`) via the Hugging Face Hub API (swift-transformers). The Hub
+///   client does per-file etag/commit diffing and shared-cache reuse, so
+///   re-fetches only pull the files that changed. Returns the snapshot root.
 ///
 /// **Offline fallback.** If HF's tree API is unreachable but a previous
 /// download exists for the same logical artifact (any revision), the newest
@@ -211,6 +216,57 @@ public actor ModelStore {
     public nonisolated func cachedArchive(unpackedAs unpackedName: String) -> URL? {
         guard let dir = try? Self.cacheDirNonisolated(repo: repo) else { return nil }
         return Self.newestCachedNonisolated(matching: unpackedName, in: dir)
+    }
+
+    // MARK: - Snapshot (Hugging Face Hub)
+
+    /// Downloads a repo snapshot via the Hugging Face Hub API (swift-transformers)
+    /// and returns the local snapshot root. Prefer this over `archive(...)` for
+    /// models shipped as an *unzipped* directory (e.g. a `.mlmodelc`): the Hub
+    /// client does per-file etag/commit diffing, so re-fetches only download the
+    /// files that actually changed, and unchanged files are reused across
+    /// revisions from the shared Hub cache.
+    ///
+    /// The returned URL is the repo root; the caller appends the bundle it wants
+    /// (e.g. `root.appending(path: "uhm.mlmodelc")`). Downloads land under
+    /// Application Support so they survive app updates and aren't purged like
+    /// Caches on low-storage events.
+    ///
+    /// - Parameters:
+    ///   - globs: file patterns to fetch (e.g. `["uhm.mlmodelc/*"]`). Empty = whole repo.
+    ///   - progress: 0…1 aggregate download progress.
+    public func snapshot(matching globs: [String] = [],
+                         progress: Progress? = nil) async throws -> URL {
+        let base = try cacheDir()
+        let repoId = "\(repo.owner)/\(repo.name)"
+        let hub = HubApi(downloadBase: base, hfToken: hfToken)
+        do {
+            return try await hub.snapshot(
+                from: repoId,
+                revision: repo.revision,
+                matching: globs
+            ) { p in
+                progress?(p.fractionCompleted)
+            }
+        } catch {
+            // Offline fallback: a previously materialized snapshot beats nothing.
+            let cached = HubApi(downloadBase: base)
+                .localRepoLocation(HubApi.Repo(id: repoId))
+            if FileManager.default.fileExists(atPath: cached.path) {
+                progress?(1.0)
+                return cached
+            }
+            throw Failure.downloadFailed(repo.resolveBaseURL, underlying: error)
+        }
+    }
+
+    /// Returns the local snapshot root for this repo if it has been materialized,
+    /// without hitting the network. Lets callers gate the download behind UI.
+    public nonisolated func cachedSnapshot() -> URL? {
+        guard let base = try? Self.cacheDirNonisolated(repo: repo) else { return nil }
+        let repoId = "\(repo.owner)/\(repo.name)"
+        let root = HubApi(downloadBase: base).localRepoLocation(HubApi.Repo(id: repoId))
+        return FileManager.default.fileExists(atPath: root.path) ? root : nil
     }
 
     // MARK: - HF tree

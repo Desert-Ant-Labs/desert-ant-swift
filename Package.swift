@@ -15,6 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/weichsel/ZIPFoundation.git", from: "0.9.19"),
+        .package(url: "https://github.com/huggingface/swift-transformers.git", from: "1.3.0"),
     ],
     targets: [
         .target(
@@ -25,6 +26,7 @@ let package = Package(
             name: "DesertAntStore",
             dependencies: [
                 .product(name: "ZIPFoundation", package: "ZIPFoundation"),
+                .product(name: "Hub", package: "swift-transformers"),
             ],
             path: "Sources/DesertAntStore"
         ),
