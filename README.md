@@ -42,3 +42,9 @@ Brand fonts (Instrument Serif, Hanken Grotesk, JetBrains Mono) are not bundled. 
 Pre-1.0. APIs may move while the first SDKs (`eye-swift`, `uhm-swift`, `clear-swift`) come online and put real pressure on the shape.
 
 [ds]: https://github.com/desert-ant-labs/design-system
+
+## License
+
+[Desert Ant Labs Source-Available License](https://license.desertant.ai/1.0). Free for
+most apps; a commercial license is required at scale. Full terms are at the link.
+Licensing: <licensing@desertant.ai>.
