@@ -45,6 +45,6 @@ Pre-1.0. APIs may move while the first SDKs (`eye-swift`, `uhm-swift`, `clear-sw
 
 ## License
 
-[Desert Ant Labs Source-Available License](https://license.desertant.ai/1.0). Free for
+[Desert Ant Labs Source-Available License](https://license.desertant.com/1.0). Free for
 most apps; a commercial license is required at scale. Full terms are at the link.
-Licensing: <licensing@desertant.ai>.
+Licensing: <licensing@desertant.com>.
