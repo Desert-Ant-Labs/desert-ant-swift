@@ -3,8 +3,9 @@ import SwiftUI
 /// The brand loaders: every variant the web has, on the same cells and the
 /// same clocks. `emerge-sparse` is the preferred default across the brand.
 ///
-///     DA.Loader()                 // emerge-sparse
+///     DA.Loader()                                  // emerge-sparse, in the foreground color
 ///     DA.Loader(.drop)
+///     DA.Loader(color: DA.Color.terracotta)        // a model color, for that model's demo app
 ///
 /// Keep in step: the four mark variants are hand ports of
 /// packages/web/css/components/loader.css in Desert-Ant-Labs/brand; the grid
@@ -21,9 +22,16 @@ extension DA {
 
         @Environment(\.accessibilityReduceMotion) private var reduceMotion
         let variant: Variant
+        let color: SwiftUI.Color?
         let start = Date()
 
-        public init(_ variant: Variant = .emergeSparse) { self.variant = variant }
+        /// `color` tints the whole loader (the plate is the same color at 10%,
+        /// as on the web). Without it the loader takes the environment
+        /// foreground, so `.foregroundStyle(...)` works too.
+        public init(_ variant: Variant = .emergeSparse, color: SwiftUI.Color? = nil) {
+            self.variant = variant
+            self.color = color
+        }
 
         static let cycle: TimeInterval = 2.2      // --duration-loader
         static let dropStagger: TimeInterval = 0.14
@@ -48,6 +56,7 @@ extension DA {
                 }
             }
             .aspectRatio(MarkGeometry.plate.width / MarkGeometry.plate.height, contentMode: .fit)
+            .foregroundStyle(color ?? SwiftUI.Color.primary)
             .accessibilityLabel(Text("Loading"))
         }
 
