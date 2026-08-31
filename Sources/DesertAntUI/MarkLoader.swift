@@ -7,7 +7,7 @@ import SwiftUI
 /// (packages/web/css/components/loader.css, `.loader--drop`): the same
 /// 2.2s cycle, the same 140ms stagger, the same keyframes. A change on
 /// either side needs the other.
-extension DS {
+extension DA {
     public struct MarkLoader: View {
         @Environment(\.accessibilityReduceMotion) private var reduceMotion
         let start = Date()

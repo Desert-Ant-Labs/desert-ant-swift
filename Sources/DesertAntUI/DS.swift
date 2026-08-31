@@ -6,13 +6,13 @@ import SwiftUI
 /// on brand.desertant.com.
 ///
 /// Colors are generated from the brand tokens (`DesignTokens.swift`, built by
-/// Desert-Ant-Labs/brand). `DS.Color` is the semantic surface on top:
+/// Desert-Ant-Labs/brand). `DA.Color` is the semantic surface on top:
 ///
 ///     Text("Ready")
-///         .foregroundStyle(DS.Color.textPrimary)
-///         .tint(DS.Color.accent)
+///         .foregroundStyle(DA.Color.textPrimary)
+///         .tint(DA.Color.accent)
 ///
-public enum DS {
+public enum DA {
     public enum Color {
         // MARK: Background
         public static let bgCanvas = DesignTokens.Colors.colorBgCanvas

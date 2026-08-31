@@ -2,13 +2,13 @@ import SwiftUI
 
 /// The attribution lockup the model license asks for: the mark and the name.
 ///
-///     DS.Attribution()                       // the mark and "Desert Ant Labs"
-///     DS.Attribution(prefix: "Runs on")      // a muted lead-in
+///     DA.Attribution()                       // the mark and "Desert Ant Labs"
+///     DA.Attribution(prefix: "Runs on")      // a muted lead-in
 ///
 /// Wrap it in a `Link` to https://desertant.com where a tap makes sense. The
 /// wordmark renders in the system font: the brand faces are not part of this
 /// kit.
-extension DS {
+extension DA {
     public struct Attribution: View {
         let prefix: String?
 
@@ -19,7 +19,7 @@ extension DS {
                 if let prefix {
                     Text(prefix)
                         .font(.footnote)
-                        .foregroundStyle(DS.Color.textMuted)
+                        .foregroundStyle(DA.Color.textMuted)
                 }
                 Mark(.plate).frame(height: 19)
                 Text("Desert Ant Labs")

@@ -11,10 +11,10 @@ The Desert Ant Labs brand kit for Swift apps: the bare minimum to build a SwiftU
 ```swift
 import DesertAntUI
 
-DS.Mark()                          // the mark on its plate; .inverted and .isolated exist
-DS.MarkLoader()                    // the drop loader, 2.2s cycle, honors Reduce Motion
-DS.Attribution(prefix: "Runs on")  // the credit lockup for your about screen
-Text("Ready").foregroundStyle(DS.Color.textPrimary)
+DA.Mark()                          // the mark on its plate; .inverted and .isolated exist
+DA.MarkLoader()                    // the drop loader, 2.2s cycle, honors Reduce Motion
+DA.Attribution(prefix: "Runs on")  // the credit lockup for your about screen
+Text("Ready").foregroundStyle(DA.Color.textPrimary)
 ```
 
 The mark and the loader take their color from the environment foreground and size to any frame; the colors resolve light and dark on their own.

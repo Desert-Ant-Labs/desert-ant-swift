@@ -5,7 +5,7 @@ import SwiftUI
 /// Keep in step: the same geometry lives in the brand repo as markup
 /// (packages/web/js/mark.js, MARK_SVG). A change there needs the same
 /// change here.
-extension DS {
+extension DA {
     /// The mark's native geometry, in a 40x38 space. Cell 0 is the tall bar.
     public enum MarkGeometry {
         public static let plate = CGSize(width: 40, height: 38)
