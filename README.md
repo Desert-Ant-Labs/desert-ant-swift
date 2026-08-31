@@ -10,7 +10,7 @@ The Desert Ant Labs brand kit for SwiftUI: the bare minimum to put our brand in 
 import DesertAntUI
 
 DA.Mark()                          // the mark on its plate; .inverted and .isolated exist
-DA.Loader()                        // the preferred loader, emerge-sparse; 14 more variants, .drop to .tetrisClear
+DA.Loader()                        // the preferred loader, fill-spiral; 14 more variants, .drop to .tetrisClear
 DA.Loader(color: DA.Color.sage)    // tinted; without color: it takes the foreground style
 DA.Attribution(prefix: "Runs on")  // the credit lockup for your about screen
 Text("Ready").foregroundStyle(DA.Color.textPrimary)

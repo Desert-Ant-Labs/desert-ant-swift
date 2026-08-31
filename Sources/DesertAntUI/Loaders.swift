@@ -1,9 +1,9 @@
 import SwiftUI
 
 /// The brand loaders: every variant the web has, on the same cells and the
-/// same clocks. `emerge-sparse` is the preferred default across the brand.
+/// same clocks. `fill-spiral` is the preferred default across the brand.
 ///
-///     DA.Loader()                                  // emerge-sparse, in the foreground color
+///     DA.Loader()                                  // fill-spiral, in the foreground color
 ///     DA.Loader(.drop)
 ///     DA.Loader(color: DA.Color.terracotta)        // a model color, for that model's demo app
 ///
@@ -33,7 +33,7 @@ extension DA {
         /// `color` tints the whole loader (the plate is the same color at 10%,
         /// as on the web). Without it the loader takes the environment
         /// foreground, so `.foregroundStyle(...)` works too.
-        public init(_ variant: Variant = .emergeSparse, color: SwiftUI.Color? = nil) {
+        public init(_ variant: Variant = .fillSpiral, color: SwiftUI.Color? = nil) {
             self.variant = variant
             self.color = color
         }
