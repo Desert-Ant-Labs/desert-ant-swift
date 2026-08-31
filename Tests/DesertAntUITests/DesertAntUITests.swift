@@ -11,15 +11,31 @@ final class DesertAntUITests: XCTestCase {
     }
 
     func testLoaderTimingMatchesTheWebLoader() {
-        XCTAssertEqual(DA.MarkLoader.cycle, 2.2, accuracy: 0.0001)
-        XCTAssertEqual(DA.MarkLoader.stagger, 0.14, accuracy: 0.0001)
-        // before its delay a cell waits off the top, clear
-        let early = DA.MarkLoader.state(at: 0.1, cell: 6)
-        XCTAssertEqual(early.opacity, 0)
-        // mid-cycle every cell is settled and opaque
-        let mid = DA.MarkLoader.state(at: 1.5, cell: 0)
-        XCTAssertEqual(mid.dropY, 0)
+        XCTAssertEqual(DA.Loader.cycle, 2.2, accuracy: 0.0001)
+        XCTAssertEqual(DA.Loader.dropStagger, 0.14, accuracy: 0.0001)
+        // before its delay a drop cell waits off the top, clear
+        let drop = DA.Loader(.drop)
+        XCTAssertEqual(drop.cellState(t: 0.1, cell: 6).opacity, 0)
+        let mid = drop.cellState(t: 1.5, cell: 0)
+        XCTAssertEqual(mid.dy, 0)
         XCTAssertEqual(mid.opacity, 1)
+    }
+
+    func testEveryLoaderVariantHasItsData() {
+        XCTAssertEqual(DA.Loader.Variant.allCases.count, 15)
+        XCTAssertEqual(LoaderData.fill.count, 25)
+        XCTAssertEqual(LoaderData.tetris.count, 25)
+        XCTAssertEqual(LoaderData.tetrisClear.count, 19)
+        XCTAssertEqual(LoaderData.emergeSparse.count, 14)   // the mark px stay lit
+        XCTAssertEqual(LoaderData.chase.count, 7)
+        XCTAssertEqual(LoaderData.orbit.count, 6)
+        // emerge-sparse: a negative delay starts mid-cycle; the value is defined at t = 0
+        let track = LoaderData.emergeSparse["0-0"]!
+        XCTAssertEqual(track.duration, 4.145, accuracy: 0.0001)
+        XCTAssertEqual(track.delay, -1.36, accuracy: 0.0001)
+        let v = DA.Loader.value(of: track, at: 0)
+        XCTAssertGreaterThanOrEqual(v, 0.08)
+        XCTAssertLessThanOrEqual(v, 1)
     }
 
     func testSemanticColorsExist() {
