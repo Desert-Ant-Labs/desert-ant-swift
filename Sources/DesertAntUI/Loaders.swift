@@ -23,7 +23,12 @@ extension DA {
         @Environment(\.accessibilityReduceMotion) private var reduceMotion
         let variant: Variant
         let color: SwiftUI.Color?
-        let start = Date()
+        /// `@State`, not a stored `Date`: the parent's body may rebuild this
+        /// struct many times a second (any view that shows progress does), and
+        /// a plain property would restart the clock on every rebuild, freezing
+        /// the animation on its first frame. State survives the rebuilds and
+        /// resets only when the loader actually leaves and re-enters the tree.
+        @State private var start = Date()
 
         /// `color` tints the whole loader (the plate is the same color at 10%,
         /// as on the web). Without it the loader takes the environment
