@@ -1,19 +1,29 @@
-# Desert Ant Labs Source-Available License
+MIT License
 
-This software is licensed under the **Desert Ant Labs Source-Available License,
-Version 1.0**. The full, authoritative terms are published at:
+Copyright (c) 2026 Desert Ant Labs B.V.
 
-**https://license.desertant.com/1.0**
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Copyright © 2026 Desert Ant Labs B.V.
-SPDX-License-Identifier: LicenseRef-DAL-Source-Available-1.0
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-In short: free below **100,000 monthly active devices per platform, for each model**;
-above that a commercial license is required (<licensing@desertant.com>). You may embed
-the models in your application; you may **not** use them, their outputs, or their logs
-to train a competing on-device model. Credit Desert Ant Labs in your app
-(https://license.desertant.com/attribution). Using this software means you accept the
-full terms at the link above. Machine-readable: https://license.desertant.com/1.0.txt
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-<!-- This is a pointer notice. Do not edit the terms here; the canonical text lives in
-     the license repo and at the URL above. Only the copyright year is repo-local. -->
+---
+
+The "Desert Ant Labs" name and the Desert Ant Labs mark are trademarks of
+Desert Ant Labs B.V. This license covers the code only; it does not grant
+rights to the name or the mark beyond using them to credit Desert Ant Labs,
+as the model license asks (https://license.desertant.com/attribution).
+The Desert Ant models are licensed separately: https://license.desertant.com/1.0.
