@@ -22,4 +22,4 @@ The mark and the loader take their color from the environment foreground and siz
 
 ## License
 
-MIT for the code (see `LICENSE.md`). The Desert Ant Labs name and mark are trademarks; the [model license](https://license.desertant.com/) is separate and asks apps that ship our models to [credit Desert Ant Labs](https://license.desertant.com/attribution), which is what `DA.Attribution` is for.
+MIT for the code (see `LICENSE.md`). The Desert Ant Labs name and mark are trademarks; the [model license](https://license.desertant.com/) is separate and requires apps that ship our models to [credit Desert Ant Labs](https://license.desertant.com/attribution), which is what `DA.Attribution` is for.
